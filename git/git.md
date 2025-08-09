@@ -16,9 +16,7 @@ git config --global user.email "[]"
 
 3. 删除旧的信息 
 
-refers to: https://docs.github.com/en/get-started/git-basics/updating-credentials-from-the-macos-keychain
-
-此时push如果报错403，就说明依然使用的是保存在电脑里的github账号信息，先查看一下config文件都保存在哪里
+3.1 此时push如果报错403，就说明依然使用的是保存在电脑里的github账号信息，先查看一下config文件都保存在哪里
 
 ```
 git config --list --show-origin
@@ -26,16 +24,20 @@ git config --list --show-origin
 ![](./images/Screenshot%202025-08-09%20at%2017.44.26.png)
 其中有一个credential.helper=osxkeychain，表示从osxkeychain中拿到的登陆信息。
 
-此时有两个选择：
-1. 删除这一行，然后git push的时候就会重新输入密码，之后可以重新加回来，这样下次就不用重新输入密码了
-2. 去删除keychain里的信息，找到keychain access，不同系统版本可能不一样，然后删掉就好了
+3.2 此时有两个选择：
 
-接下来是产生github的password，github已经deprecate了password，所以需要产生personal access token，refers to https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens。在产生personal access token的时候记得勾选这个token可用的范围 
+一是，删除这一行，然后git push的时候就会重新输入密码，之后可以重新加回来，这样下次就不用重新输入密码了
+
+二是，去删除keychain里的信息，找到keychain access，不同系统版本可能不一样，然后删掉就好了。refers to: https://docs.github.com/en/get-started/git-basics/updating-credentials-from-the-macos-keychain
+
+3.3 接下来是产生github的password，github已经deprecate了password，所以需要产生personal access token，refers to https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-token 。在产生personal access token的时候记得勾选这个token可用的范围 
 
 
-
+> Note
+>
 > 如何找到keychain access
-![](./images/Screenshot%202025-08-09%20at%2017.49.03.png)
+>
+> ![](./images/Screenshot%202025-08-09%20at%2017.49.03.png)
 >> 方法一：直接访问
 >>
 >> 打开“访达”（Finder）。在菜单栏中选择“前往” > “前往文件夹”。输入路径 /System/Library/CoreServices/Applications/ 并按回车。在该文件夹中找到“钥匙串访问”应用程序并双击打开。
